@@ -1,0 +1,48 @@
+README
+
+Author: Yuzhuo Sun
+Date: Nov 8, 2015
+----------------------------
+This is a project used for Book Catalog for Confer Interview.
+Implemented by Spring.
+
+com.confer.sun.config contains all config java files
+com.confer.sun.controller contains HomeController java REST controller
+com.confer.sun.entity contains Book and Category java entity
+com.confer.sun.repository contains all the repositories and repositories implementation java classes
+
+----------------------------
+REST routes map
+
+GET		Test REST connection method								/hello
+POST	Create a new book in database							/book/{isbn}/{title}/{author}/{year}
+GET		Retrieve all book instance from database				/book
+POST	Find book by a given ISBN								/search/book/isbn/{isbn}
+POST	Find all books by given author name 					/search/book/author/{author}
+POST	Find all books by given title							/search/book/title/{title}
+POST	Create a category by name and description parameters	/category/{name}/{description}
+POST	Create a category by name, description and book isbn 	/category/{name}/{description}/{isbn}
+
+
+----------------------------
+Assumptions:
+1, Category has unique names
+2, Books has unique ISBN
+3, When user search book by ISBN, it will return a unique answer
+4, When user search book by title, it will return all the books than part of their titles match search parameter
+
+----------------------------
+Test:
+http://localhost:8080/book/0-7475-3269-9/Harry Potter and the Philosopher's Stone/J. K. Rowling/1997
+http://localhost:8080/book/0-7475-3849-2/Harry Potter and the Chamber of Secrets/J. K. Rowling/1998
+http://localhost:8080/book/0-7475-4215-5/Harry Potter and the Prisoner of Azkaban/J. K. Rowling/1999
+http://localhost:8080/book/0-553-10354-7/A Game of Thrones/George R. R. Martin/1996
+http://localhost:8080/book/0-553-10803-4/A Clash of Kings/George R. R. Martin/1999
+http://localhost:8080/search/book/author/J. K. Rowling/
+http://localhost:8080/search/book/author/George R. R. Martin/
+http://localhost:8080/search/book/isbn/0-7475-3269-9/
+http://localhost:8080/search/book/title/Harry Potter and the Philosopher's Stone/
+http://localhost:8080/search/book/title/Harry Potter/
+http://localhost:8080/category/Fantasy/Fantasy Description/0-7475-3269-9
+http://localhost:8080/category/Fantasy/Fantasy Description/0-7475-3849-2
+http://localhost:8080/category/War/War Description/0-553-10354-7
